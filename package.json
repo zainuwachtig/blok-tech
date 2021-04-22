@@ -1,7 +1,7 @@
 {
   "name": "blok-tech",
   "version": "1.0.0",
-  "description": "",
+  "description": "Matching app",
   "main": "index.js",
   "scripts": {
     "test": "nodemon server.js"
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/zainuwachtig/blok-tech.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Zain Butt",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/zainuwachtig/blok-tech/issues"
