@@ -1,0 +1,25 @@
+html
+  include includes/head.pug 
+  body
+    include includes/header.pug
+    div.shoecard
+        h2 #{name}
+        p Color
+        p BLACK/VOLT-SUMMIT WHITE
+        img(src='../images/denham.jpeg')
+        div
+            div
+                p Style 
+                p DD9519-001
+
+            div
+                p Year 
+                p 2020
+
+    form(class="likebuttons" action="")
+        button &#128465; 
+        button &#128293;
+
+    
+include includes/footer.pug
+//- Waarom is die undefined op regel 6

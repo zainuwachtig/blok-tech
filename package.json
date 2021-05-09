@@ -20,7 +20,8 @@
   "dependencies": {
     "camelcase": "^6.2.0",
     "express": "^4.17.1",
-    "pug": "^3.0.2"
+    "pug": "^3.0.2",
+    "stockx-api": "^1.0.9"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
