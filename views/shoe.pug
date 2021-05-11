@@ -1,20 +1,21 @@
 html
+each val in shoe
   include includes/head.pug 
   body
     include includes/header.pug
     div.shoecard
-        h2 #{name}
+        h2= name
         p Color
         p BLACK/VOLT-SUMMIT WHITE
-        img(src='../images/denham.jpeg')
+        img(src=shoe.image)
         div
             div
                 p Style 
-                p DD9519-001
+                p #{shoe.pid}
 
             div
                 p Year 
-                p 2020
+                p #{shoe.releaseDate}
 
     form(class="likebuttons" action="")
         button &#128465; 
@@ -22,4 +23,3 @@ html
 
     
 include includes/footer.pug
-//- Waarom is die undefined op regel 6

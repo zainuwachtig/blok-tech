@@ -43,12 +43,17 @@ app.get('/login', (req, res) => {
   res.render('login')
 })
 
-// Waarom moet ik weer shoesArray noemen bij de urlKey op regel 49? Hij doet toch de find function op die array?
-app.get('/shoe/:urlKey', (req, res) => {
-  const shoe = shoesArray.find(shoe => shoesArray.urlKey == req.params.urlKey)
-  // Hij geef undefined aan?
+app.get('/shoe/:urlKey', async (req, res) => {
+  // const shoe = shoesArray.find(shoe => shoe.urlKey == req.params.urlKey)
+  let shoe = await stockX.searchProducts('air max 95', {
+    limit: 1
+  })
+  .then(products => products)
+  .catch(err => console.log(`Error searching: ${err.message}`));
   res.render('shoe', {shoe})
+  console.log(shoe)
 })
+
 
 
 app.use( (req, res) => {
