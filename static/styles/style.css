@@ -52,6 +52,10 @@ header {
     margin: 2em 1em;
 }
 
+.shoecard > div > div:nth-last-child(1) {
+    text-align: right;
+}
+
 /* Like / Dislike knoppen */
 .likebuttons {
     display: flex;

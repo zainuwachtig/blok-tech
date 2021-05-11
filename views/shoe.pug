@@ -1,21 +1,24 @@
 html
-each val in shoe
+each s in shoe
   include includes/head.pug 
   body
     include includes/header.pug
     div.shoecard
-        h2= name
+        h2= s.name
         p Color
         p BLACK/VOLT-SUMMIT WHITE
-        img(src=shoe.image)
+        img(src=s.image)
         div
             div
                 p Style 
-                p #{shoe.pid}
+                p #{s.pid}
 
             div
                 p Year 
-                p #{shoe.releaseDate}
+                //- Omdat ik alleen het jaar wil hebben en niet de volledige datum
+                - var date = s.releaseDate;
+                - var sub_date = date.substr(0, 4);
+                p= sub_date
 
     form(class="likebuttons" action="")
         button &#128465; 
