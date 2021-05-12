@@ -25,22 +25,28 @@ header {
 }
 
 /* Model kiezen */
-.choosemodel button {
-    background-color: white;
+.choosemodel label {
     padding: 1em;
-    border-radius: 0.8em;
-    width: 100%;
-    margin-top: 1em;
+    margin-bottom: 1em;
     border: 1px solid black;
+    border-radius: 0.8em;
 }
 
 .overflowmodels {
     height: 50%;
     overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .choosemodel input[type=submit] {
-    margin: 2em;
+    margin: 1em auto 0 auto;
+    display: block;
+}
+
+.choosemodel input[type=checkbox] {
+    margin-right: 1em;
 }
 
 .choosemodel input[type=text] {
@@ -50,6 +56,7 @@ header {
     border: 1px solid black;
     margin: -1em 0 1em 0;
 }
+
 
 /* De card met informatie van de schoen */
 .shoecard, .choosemodel {
@@ -80,7 +87,7 @@ header {
 .shoecard > div {
     display: flex;
     justify-content: space-between;
-    margin: 2em 1em;
+    margin: 2em 0.5em 1em 0.5em;
 }
 
 .shoecard > div > div:nth-last-child(1) {

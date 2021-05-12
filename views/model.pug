@@ -4,10 +4,11 @@ html
     include includes/header.pug
     div.choosemodel
         h2 Models
-        form(action="") 
+        form(action="" method="POST") 
             input(type="text" placeholder="Search model")
             div.overflowmodels
               each val in allModels
-               input(type="checkbox" name=val id=val value=val)
-               label(for="val")=val
-            input(type="submit")
+               label(for=val)
+                 input(type="checkbox" name='chosenModels' id=val value=val)
+                 =val
+            input(type="submit" value="Continue")

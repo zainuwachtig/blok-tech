@@ -9,6 +9,8 @@ let yourModels = [];
 
 app.set('view engine', 'pug')
 
+app.use(express.json())
+app.use(express.urlencoded());
 app.use(express.static('static'))
 
 app.get('/', (req, res) => {
@@ -23,20 +25,29 @@ app.get('/login', (req, res) => {
   res.render('login')
 })
 
-app.get('/model', (req, res) => {
+app.get('/yourmodels', (req, res) => {
   res.render('model', {allModels})
 })
 
-// Kan er geen limit op te zetten ivm laden?
-// math.random nog fixen zodat die niet de hele tijd de eerste uit de array pakt.
+app.post('/yourmodels', (req, res) => {
+  yourModels = req.body.chosenModels
+  res.render('model', {allModels})
+  console.log(yourModels)
+})
+
+// Als er geen limit opstaat, is de laadtijd dan nog dragelijk?
+// .searchProducts(yourmodels) werkt nog niet
+// math.random nog fixen zodat je een gevarieerd aanbod krijgt over verschillende jaren.
+// urlKey koppelen aan product nog fixen.
+// urlKey mag niet meer dan 1 keer voorkomen, anders krijg je twee keer dezelfde producten.
 app.get('/shoe/:urlKey', async (req, res) => {
-  let shoe = await stockX.searchProducts('air max 95 dusty purple', {
-    limit: 1
+  let shoe = await stockX.searchProducts('air yeezy 1 tan', {
+    limit: 3
   })
   .then(products => products)
   .catch(err => console.log(`Error searching: ${err.message}`));
   res.render('shoe', {shoe})
-  // Hij herkent shoe wel maar niet de urlKey?
+  // shoe pakt die wel, maar urlKey is undefined?
   console.log(shoe)
 })
 
