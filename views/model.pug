@@ -1,0 +1,13 @@
+html
+  include includes/head.pug 
+  body
+    include includes/header.pug
+    div.choosemodel
+        h2 Models
+        form(action="") 
+            input(type="text" placeholder="Search model")
+            div.overflowmodels
+              each val in allModels
+               input(type="checkbox" name=val id=val value=val)
+               label(for="val")=val
+            input(type="submit")
