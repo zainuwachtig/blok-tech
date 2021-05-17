@@ -4,8 +4,8 @@ Airies is a matching application, like tinder but then for air max.
 ## Build with
 * [Node.js](https://nodejs.org/en/)
 * [Express](https://expressjs.com/)
-* [Pug]{https://pugjs.org/api/getting-started.html}
-* [MongoDB]
+* [Pug](https://pugjs.org/api/getting-started.html)
+* MongoDB
 * [GIT](https://git-scm.com/)
 * [stockx-api](https://www.npmjs.com/package/stockx-api)
 * :heart:

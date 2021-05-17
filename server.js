@@ -35,20 +35,44 @@ app.post('/yourmodels', (req, res) => {
   console.log(yourModels)
 })
 
-// Als er geen limit opstaat, is de laadtijd dan nog dragelijk?
 // .searchProducts(yourmodels) werkt nog niet
 // math.random nog fixen zodat je een gevarieerd aanbod krijgt over verschillende jaren.
 // urlKey koppelen aan product nog fixen.
 // urlKey mag niet meer dan 1 keer voorkomen, anders krijg je twee keer dezelfde producten.
 app.get('/shoe/:urlKey', async (req, res) => {
-  let shoe = await stockX.searchProducts('air yeezy 1 tan', {
-    limit: 3
-  })
-  .then(products => products)
-  .catch(err => console.log(`Error searching: ${err.message}`));
-  res.render('shoe', {shoe})
-  // shoe pakt die wel, maar urlKey is undefined?
-  console.log(shoe)
+  try {
+    let shoe = await stockX.searchProducts('air max', {
+      limit: 100
+    }) 
+    let uniqueShoes = [];
+    // loop in loop schrijven
+    // valideer of urlKey al bestaat
+    // Zo ja, sla over
+    // Zo nee, voeg toe
+    shoe.forEach(element => {
+     if (uniqueShoes.length == 0) {
+       uniqueShoes.push(element)
+       console.log('this is', uniqueShoes)
+     } else {
+      uniqueShoes.forEach(e => {
+         if (element.urlKey == e.urlKey) {
+           return
+         } else {
+           uniqueShoes.push(element)  
+         }
+       
+       }
+         
+       )
+     }
+    });
+    // res.render('shoe', {shoe})
+    res.send(uniqueShoes)
+    // shoe pakt die wel, maar urlKey is undefined?
+  } catch (error) {
+      console.log(`Error searching: ${err.message}`);
+  }
+  
 })
 
 
