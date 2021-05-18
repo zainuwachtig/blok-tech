@@ -2,9 +2,11 @@ html
   include includes/head.pug 
   body
     include includes/header.pug
-    img(src="./images/pinwheel.png", alt="" id="pinwheel")
-    form(action="/yourmodels") 
-     button Start Exploring
+    div.homepage
+      img(src="./images/pinwheel.png", alt="" id="pinwheel")
+      form(action="/yourmodels") 
+        button(id="startbutton") Start Exploring
 
     
 include includes/footer.pug
+//- Bron afbeelding: https://s3.amazonaws.com/nikeinc/assets/95135/Pinwheel-border_native_1600.png?1587545935

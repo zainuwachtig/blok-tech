@@ -1,141 +1,169 @@
 * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;  
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
 }
 
 header {
-    padding: 1em;
-    display: flex;
-    justify-content: flex-end;
+  padding: 1em;
+  display: flex;
+  justify-content: flex-end;
 }
 
 /* Index pagina */
 #pinwheel {
-    width: 40%;
+  width: 20em;
+}
+
+.homepage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Login */
-.login, .choosemodel input[type=submit] {
-    background-color: #EA5233;
-    color: white;
-    padding: 1em 2em;
-    border: none;
-    border-radius: 0.8em;
+.login,
+.choosemodel input[type="submit"],
+#startbutton {
+  background-color: #ea5233;
+  color: white;
+  padding: 1em 2em;
+  border: none;
+  border-radius: 0.8em;
 }
 
-.login:hover, .choosemodel input[type=submit]:hover {
-    opacity: 0.8;
+.login:hover,
+.choosemodel input[type="submit"]:hover,
+#startbutton:hover {
+  opacity: 0.8;
 }
 
 /* Model kiezen */
 .choosemodel label {
-    padding: 1em;
-    margin-bottom: 1em;
-    border: 1px solid black;
-    border-radius: 0.8em;
+  padding: 1em;
+  margin-bottom: 1em;
+  border: 1px solid black;
+  border-radius: 0.8em;
 }
 
 .overflowmodels {
-    height: 50%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
+  height: 50%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-.choosemodel input[type=submit] {
-    margin: 1em auto 0 auto;
-    display: block;
+.choosemodel input[type="submit"] {
+  margin: 1em auto 0 auto;
+  display: block;
 }
 
-.choosemodel input[type=checkbox] {
-    margin-right: 1em;
+.choosemodel input[type="checkbox"] {
+  margin-right: 1em;
 }
 
-.choosemodel input[type=text] {
-    padding: 0.5em;
-    width: 100%;
-    border-radius: 0.6em;
-    border: 1px solid black;
-    margin: -1em 0 1em 0;
+.choosemodel input[type="text"] {
+  padding: 0.5em;
+  width: 100%;
+  border-radius: 0.6em;
+  border: 1px solid black;
+  margin: -1em 0 1em 0;
 }
 
+#main-shoe {
+  width: 20em;
+  height: 80%;
+  margin: 0 auto;
+  position: relative;
+}
 
 /* De card met informatie van de schoen */
-.shoecard, .choosemodel {
-    margin: 1em auto 0 auto;
-    width: 20em;
-    padding: 1em;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
-    border-radius: 2em;
+.shoecard,
+.choosemodel {
+  margin: 1em auto 0 auto;
+  width: 20em;
+  padding: 1em;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 2em;
+}
+
+/* Position absolute om zo de cards over elkaar te krijgen */
+.shoecard {
+  position: absolute;
+  background-color: white;
+  width: 20em;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .shoecard > p {
-    text-align: center;
+  text-align: center;
 }
 
-.shoecard h2, .choosemodel h2 {
-    margin-bottom: 1.5em;
-    text-align: center;
+.shoecard h2,
+.choosemodel h2 {
+  margin-bottom: 1.5em;
+  text-align: center;
 }
 
 .shoecard img {
-    width: 100%;
+  width: 100%;
 }
 
 .shoecard p:first-of-type {
-    color: #7F7F7F;
+  color: #7f7f7f;
 }
 
 .shoecard > div {
-    display: flex;
-    justify-content: space-between;
-    margin: 2em 0.5em 1em 0.5em;
+  display: flex;
+  justify-content: space-between;
+  margin: 2em 0.5em 1em 0.5em;
 }
 
 .shoecard > div > div:nth-last-child(1) {
-    text-align: right;
+  text-align: right;
 }
 
 /* Like / Dislike knoppen */
 .likebuttons {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 2em;
-    width: 20em;
-    margin-left: auto;
-    margin-right: auto;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2em;
+  width: 20em;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  bottom: 0;
 }
 .likebuttons button {
-    border-radius: 50%;
-    border: 1px solid #EA5233;
-    padding: 1em;
-    background-color: transparent;
-    font-size: 1.5em;
-    /* Line-height om een perfecte cirkel te maken. */
-    line-height: 1;
+  border-radius: 50%;
+  border: 1px solid #ea5233;
+  padding: 1em;
+  background-color: transparent;
+  font-size: 1.5em;
+  /* Line-height om een perfecte cirkel te maken. */
+  line-height: 1;
 }
 
 .likebuttons button:hover {
-    background-color: #EA5233;
-    transition: .3s ease;
+  background-color: #ea5233;
+  transition: 0.3s ease;
 }
-
 
 /* Footer */
 footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    margin-bottom: 1em;
-    font-size: 0.8em;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: 0.8em;
 }
 
 footer a {
-    text-decoration: none;
-    color: #EA5233;
+  text-decoration: none;
+  color: #ea5233;
 }

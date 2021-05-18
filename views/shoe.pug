@@ -1,26 +1,27 @@
 html
-each s in shoe
   include includes/head.pug 
   body
     include includes/header.pug
-    div.shoecard
-        h2= s.name
-        img(src=s.image alt=s.name)
-        div
+    main#main-shoe
+     each s in shoe
+        div.shoecard
+            h2= s.name
+            img(src=s.image alt=s.name)
             div
-                p Style 
-                p #{s.pid}
+                div
+                    p Style 
+                    p #{s.pid}
 
-            div
-                p Year 
-                //- Omdat ik alleen het jaar wil hebben en niet de volledige datum
-                - var date = s.releaseDate;
-                - var sub_date = date.substr(0, 4);
-                p= sub_date
+                div
+                    p Year 
+                    //- Omdat ik alleen het jaar wil hebben en niet de volledige datum
+                    - var date = s.releaseDate;
+                    - var sub_date = date.substr(0, 4);
+                    p= sub_date
 
-    form(class="likebuttons" action="/shoe" method="POST")
-        button(type="submit" name="dislike" value="dislike") &#128465; 
-        button(type="submit" name="like" value="like") &#128293;
+     form(class="likebuttons" action="/shoe" method="POST")
+            button(type="submit" name="dislike" value="dislike") &#128465; 
+            button(type="submit" name="like" value="like") &#128293;
 
     
 include includes/footer.pug

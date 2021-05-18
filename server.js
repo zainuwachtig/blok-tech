@@ -36,13 +36,12 @@ app.post('/yourmodels', (req, res) => {
   console.log(yourModels)
 })
 
-// urlKey koppelen aan product nog fixen.
 app.get('/shoe', async (req, res) => {
   try {
-    let duplicateArray = await stockX.searchProducts(yourModels, {
-      limit: 10
+    let duplicateArray = await stockX.searchProducts('Air Max', {
+      limit: 1000
     }) 
- 
+    //  Gevonden op Stack Overflow
     function filterDuplicates(shoeArray, id) {
       return [...new Map(shoeArray.map(shoe => [shoe[id], shoe])).values()]
      }
@@ -51,9 +50,8 @@ app.get('/shoe', async (req, res) => {
      console.log(shoe)
 
     res.render('shoe', {shoe})
-    // res.send(uniqueShoes)
   } catch (error) {
-      // console.log(`Error searching: ${err.message}`);
+      console.log(`Error searching: ${err.message}`);
   }
   
 })
