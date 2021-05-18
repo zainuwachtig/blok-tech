@@ -30,6 +30,14 @@ app.get('/yourmodels', (req, res) => {
   res.render('model', {allModels})
 })
 
+app.get('/contact', (req, res) => {
+  res.render('contact')
+})
+
+app.post('/contact', (req, res) => {
+  res.send('gelukt')
+})
+
 app.post('/yourmodels', (req, res) => {
   yourModels = req.body.chosenModels
   res.render('model', {allModels})
@@ -38,36 +46,33 @@ app.post('/yourmodels', (req, res) => {
 
 app.get('/shoe', async (req, res) => {
   try {
-    let duplicateArray = await stockX.searchProducts('Air Max', {
-      limit: 1000
-    }) 
+    let duplicateArray = await stockX.searchProducts('Air Max') 
     //  Gevonden op Stack Overflow
     function filterDuplicates(shoeArray, id) {
       return [...new Map(shoeArray.map(shoe => [shoe[id], shoe])).values()]
      }
       
-     const shoe = filterDuplicates(duplicateArray, 'uuid')
-     console.log(shoe)
+    const shoe = filterDuplicates(duplicateArray, 'uuid')
+    console.log(shoe)
 
     res.render('shoe', {shoe})
   } catch (error) {
       console.log(`Error searching: ${err.message}`);
   }
-  
 })
 
 app.post('/shoe', (req, res) => {
-// De pid en img van het object moet ik hebben -> alles is gedeclareerd in app.get('/shoe')
-  // console.log(uniqueShoes)
-  // myLikes.push(likeButton)
-  // console.log(myLikes)
+  // const urlKeyShoe = shoe.find(shoe => shoe.urlKey == req.params.urlKey)
+  myLikes.push({
+    name: req.body.name,
+    image: req.body.image
+  })
+  console.log(myLikes);
 })
-
 
 app.use( (req, res) => {
   res.status(404).send("Sorry, not found")
 })
-
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)

@@ -11,6 +11,10 @@ header {
   justify-content: flex-end;
 }
 
+.hidden {
+  display: none;
+}
+
 /* Index pagina */
 #pinwheel {
   width: 20em;
@@ -22,10 +26,22 @@ header {
   align-items: center;
 }
 
+/* Contact */
+.contact form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact input,
+.contact select {
+  margin-top: 1em;
+}
+
 /* Login */
 .login,
 .choosemodel input[type="submit"],
-#startbutton {
+#startbutton,
+.contact input[type="submit"] {
   background-color: #ea5233;
   color: white;
   padding: 1em 2em;
@@ -40,7 +56,8 @@ header {
 }
 
 /* Model kiezen */
-.choosemodel label {
+.choosemodel label,
+.contact label {
   padding: 1em;
   margin-bottom: 1em;
   border: 1px solid black;
@@ -55,7 +72,8 @@ header {
   flex-direction: column;
 }
 
-.choosemodel input[type="submit"] {
+.choosemodel input[type="submit"],
+.contact input[type="submit"] {
   margin: 1em auto 0 auto;
   display: block;
 }
@@ -64,11 +82,16 @@ header {
   margin-right: 1em;
 }
 
-.choosemodel input[type="text"] {
+.choosemodel input[type="text"],
+.contact input[type="text"],
+.contact input[type="email"] {
   padding: 0.5em;
   width: 100%;
   border-radius: 0.6em;
   border: 1px solid black;
+}
+
+.choosemodel input[type="text"] {
   margin: -1em 0 1em 0;
 }
 
@@ -81,7 +104,8 @@ header {
 
 /* De card met informatie van de schoen */
 .shoecard,
-.choosemodel {
+.choosemodel,
+.contact {
   margin: 1em auto 0 auto;
   width: 20em;
   padding: 1em;
@@ -103,7 +127,8 @@ header {
 }
 
 .shoecard h2,
-.choosemodel h2 {
+.choosemodel h2,
+.contact h2 {
   margin-bottom: 1.5em;
   text-align: center;
 }

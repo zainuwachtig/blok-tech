@@ -1,0 +1,28 @@
+html
+  include includes/head.pug 
+  body
+    include includes/header.pug
+    div.contact
+     h2 Contact
+     form(action="/contact" method="POST") 
+      div.overflowmodels
+        label(for="fullName") Your name
+         input(type="text" placeholder="Your name" required)
+        label(for="email") Your Email Adress
+         input(type="email" placeholder="Your email adress" required)
+        label(for="stylecode") Style code
+         input(type="text" placeholder="Style code")
+        label(for="issue") The issue relates to
+         select(name="issue")
+          option(value="missingImage") The image is missing
+          option(value="missingYear" class="missingyearoption") The release year is missing
+          option(value="somethingElse") There is something else
+        label(for="imagefile") New image
+         input(type="file")
+        label(for="releaseyear" class=" releaeyear hidden") Year of release
+         input(type="number" max="2022")
+        label(for="message") Message
+         textarea(cols="30" rows="5" placeholder="Bericht" required)
+        
+      input(type="submit" value="Continue")
+    include includes/footer.pug
