@@ -6,6 +6,7 @@ const stockX = new StockXAPI();
 // Deze aanvullen met zoveel mogelijk modellen
 const allModels = ['Air Max 1', 'Air Max 90', 'Air Max 95', 'Air Max 96', 'Air Max 97', 'Air Max 98', 'Air Max 270', 'Air Max 720', 'Air Max Plus', 'Air VaporMax'];
 let yourModels = [];
+let myLikes = []
 
 app.set('view engine', 'pug')
 
@@ -35,44 +36,36 @@ app.post('/yourmodels', (req, res) => {
   console.log(yourModels)
 })
 
-// .searchProducts(yourmodels) werkt nog niet
-// math.random nog fixen zodat je een gevarieerd aanbod krijgt over verschillende jaren.
 // urlKey koppelen aan product nog fixen.
-// urlKey mag niet meer dan 1 keer voorkomen, anders krijg je twee keer dezelfde producten.
-app.get('/shoe/:urlKey', async (req, res) => {
+app.get('/shoe', async (req, res) => {
   try {
-    let shoe = await stockX.searchProducts('air max', {
-      limit: 100
+    let duplicateArray = await stockX.searchProducts('air max', {
+      limit: 10
     }) 
-    let uniqueShoes = [];
-    // loop in loop schrijven
-    // valideer of urlKey al bestaat
-    // Zo ja, sla over
-    // Zo nee, voeg toe
-    shoe.forEach(element => {
-     if (uniqueShoes.length == 0) {
-       uniqueShoes.push(element)
-       console.log('this is', uniqueShoes)
-     } else {
-      uniqueShoes.forEach(e => {
-         if (element.urlKey == e.urlKey) {
-           return
-         } else {
-           uniqueShoes.push(element)  
-         }
-       
-       }
-         
-       )
+ 
+    
+    function filterDuplicates(shoeArray, id) {
+      return [...new Map(shoeArray.map(shoe => [shoe[id], shoe])).values()]
      }
-    });
-    // res.render('shoe', {shoe})
-    res.send(uniqueShoes)
-    // shoe pakt die wel, maar urlKey is undefined?
+      
+     const shoe = filterDuplicates(duplicateArray, 'uuid')
+     console.log(shoe)
+
+  
+
+    res.render('shoe', {shoe})
+    // res.send(uniqueShoes)
   } catch (error) {
-      console.log(`Error searching: ${err.message}`);
+      // console.log(`Error searching: ${err.message}`);
   }
   
+})
+
+app.post('/shoe', (req, res) => {
+// De pid en img van het object moet ik hebben -> alles is gedeclareerd in app.get('/shoe')
+  // console.log(uniqueShoes)
+  // myLikes.push(likeButton)
+  // console.log(myLikes)
 })
 
 

@@ -11,6 +11,11 @@ header {
     justify-content: flex-end;
 }
 
+/* Index pagina */
+#pinwheel {
+    width: 40%;
+}
+
 /* Login */
 .login, .choosemodel input[type=submit] {
     background-color: #EA5233;

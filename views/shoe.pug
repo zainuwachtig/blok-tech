@@ -5,8 +5,6 @@ each s in shoe
     include includes/header.pug
     div.shoecard
         h2= s.name
-        //- p Color
-        //- p BLACK/VOLT-SUMMIT WHITE
         img(src=s.image alt=s.name)
         div
             div
@@ -20,9 +18,9 @@ each s in shoe
                 - var sub_date = date.substr(0, 4);
                 p= sub_date
 
-    form(class="likebuttons" action="")
-        button &#128465; 
-        button &#128293;
+    form(class="likebuttons" action="/shoe" method="POST")
+        button(type="submit" name="dislike" value="dislike") &#128465; 
+        button(type="submit" name="like" value="like") &#128293;
 
     
 include includes/footer.pug
