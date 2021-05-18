@@ -39,19 +39,16 @@ app.post('/yourmodels', (req, res) => {
 // urlKey koppelen aan product nog fixen.
 app.get('/shoe', async (req, res) => {
   try {
-    let duplicateArray = await stockX.searchProducts('air max', {
+    let duplicateArray = await stockX.searchProducts(yourModels, {
       limit: 10
     }) 
  
-    
     function filterDuplicates(shoeArray, id) {
       return [...new Map(shoeArray.map(shoe => [shoe[id], shoe])).values()]
      }
       
      const shoe = filterDuplicates(duplicateArray, 'uuid')
      console.log(shoe)
-
-  
 
     res.render('shoe', {shoe})
     // res.send(uniqueShoes)
