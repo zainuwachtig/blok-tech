@@ -4,7 +4,7 @@ html
     include includes/header.pug
     div.choosemodel
         h2 Models
-        form(action="/shoe" method="POST") 
+        form(action="/shoe" method="GET") 
             input(type="text" placeholder="Search model")
             div.overflowmodels
               each val in allModels
