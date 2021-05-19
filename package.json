@@ -24,6 +24,7 @@
     "stockx-api": "^1.0.9"
   },
   "devDependencies": {
+    "eslint": "^7.26.0",
     "nodemon": "^2.0.7"
   }
 }
