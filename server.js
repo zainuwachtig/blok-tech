@@ -46,7 +46,8 @@ app.post('/yourmodels', (req, res) => {
 
 app.get('/shoe', async (req, res) => {
   try {
-    let duplicateArray = await stockX.searchProducts('Air Max') 
+    // Hier nog een loop schrijven -> zodat die yourModels kan gebruiken ipv 1 model.
+    let duplicateArray = await stockX.searchProducts('Air Max 98') 
     //  Gevonden op Stack Overflow
     function filterDuplicates(shoeArray, id) {
       return [...new Map(shoeArray.map(shoe => [shoe[id], shoe])).values()]
@@ -61,13 +62,25 @@ app.get('/shoe', async (req, res) => {
   }
 })
 
-app.post('/shoe', (req, res) => {
-  // const urlKeyShoe = shoe.find(shoe => shoe.urlKey == req.params.urlKey)
+app.post('/shoe', async (req, res) => {
   myLikes.push({
     name: req.body.name,
     image: req.body.image
   })
   console.log(myLikes);
+
+  try {
+    let duplicateArray = await stockX.searchProducts('Air Max 98') 
+    function filterDuplicates(shoeArray, id) {
+      return [...new Map(shoeArray.map(shoe => [shoe[id], shoe])).values()]
+     }
+    
+    const shoe = filterDuplicates(duplicateArray, 'uuid')
+
+    res.render('shoe', {shoe})
+  } catch (error) {
+      console.log(`Error searching: ${err.message}`);
+  }
 })
 
 app.use( (req, res) => {

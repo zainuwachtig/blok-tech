@@ -19,7 +19,8 @@ html
                     - var sub_date = date.substr(0, 4);
                     p= sub_date
 
-     form(class="likebuttons" action="" method="POST")
+        form(class="likebuttons" action="" method="POST")
+            input(type="hidden" name="shoe-id" value=s.id)
             button(type="submit" name="dislike" value="dislike") &#128465; 
             button(type="submit" name="like" value="like") &#128293;
 
