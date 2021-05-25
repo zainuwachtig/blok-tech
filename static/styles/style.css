@@ -151,7 +151,7 @@ header {
   text-align: right;
 }
 
-/* Like / Dislike knoppen */
+/* Like & Dislike knoppen */
 .likebuttons {
   display: flex;
   justify-content: space-around;

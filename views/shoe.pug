@@ -5,22 +5,21 @@ html
     main#main-shoe
      each s in shoe
         div.shoecard
-            h2= s.name
-            img(src=s.image alt=s.name)
+            h2= upperCard.name
+            img(src=upperCard.image  alt=upperCard.name)
             div
                 div
                     p Style 
-                    p #{s.pid}
+                    p #{upperCard.pid}
 
                 div
                     p Year 
-                    //- Omdat ik alleen het jaar wil hebben en niet de volledige datum
-                    - var date = s.releaseDate;
+                    //- Alleen het jaar en niet de volledige datum
+                    - var date = upperCard.releaseDate;
                     - var sub_date = date.substr(0, 4);
                     p= sub_date
 
         form(class="likebuttons" action="" method="POST")
-            input(type="hidden" name="shoe-id" value=s.id)
             button(type="submit" name="dislike" value="dislike") &#128465; 
             button(type="submit" name="like" value="like") &#128293;
 
