@@ -1,5 +1,7 @@
 const express = require('express')
-const app = express()
+const app = express();
+const dotenv = require('dotenv').config();
+const { MongoClient } = require('mongodb')
 const port = process.env.PORT || 3000
 // const StockXAPI = require('stockx-api');
 // const stockX = new StockXAPI();
@@ -8,6 +10,24 @@ const allModels = ['Air Max 1', 'Air Max 90', 'Air Max 95', 'Air Max 96', 'Air M
 let yourModels = [];
 let myLikes = [];
 let myDislikes = [];
+
+let db = null;
+async function connectDB() {
+  const uri = process.env.DB_URI;
+  // Waar staat dit voor?
+  const options = { useUnifiedTopology: true };
+  const client = new MongoClient(uri,options);
+  await client.connect();
+  db = await client.db(process.env.DB_NAME);
+}
+connectDB()
+.then(() => {
+  console.log('Mongo verbinding is er');
+})
+.catch ( error => {
+  console.log(error);
+});
+
 const shoe = [{
   'name': 'Air Max 95 OG Neon (2020)',
   'releaseDate': '2020-12-17',
@@ -58,6 +78,10 @@ app.get('/yourmodels', (req, res) => {
 
 app.get('/contact', (req, res) => {
   res.render('contact')
+})
+
+app.get('/mylikes', (req, res) => {
+  res.render('mylikes', {myLikes})
 })
 
 app.post('/contact', (req, res) => {

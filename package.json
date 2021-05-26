@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/zainuwachtig/blok-tech#readme",
   "dependencies": {
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "mongodb": "^3.6.8",
     "pug": "^3.0.2",
     "stockx-api": "^1.0.9"
   },

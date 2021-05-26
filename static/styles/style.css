@@ -102,15 +102,30 @@ header {
   position: relative;
 }
 
-/* De card met informatie van de schoen */
+/* De "cards" met schaduw */
 .shoecard,
 .choosemodel,
-.contact {
+.contact,
+.mylikescard {
   margin: 1em auto 0 auto;
   width: 20em;
   padding: 1em;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
   border-radius: 2em;
+}
+
+/* My likes */
+.mylikescard {
+  width: 40em;
+}
+
+.mylikescardpaartjes {
+  display: flex;
+}
+
+.mylikescardpaartjes img {
+  width: 10em;
+  margin-right: 1em;
 }
 
 /* Position absolute om zo de cards over elkaar te krijgen */
