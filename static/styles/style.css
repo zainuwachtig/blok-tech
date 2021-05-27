@@ -42,7 +42,8 @@ header {
 .choosemodel input[type="submit"],
 #startbutton,
 .contact input[type="submit"],
-.headerbuttons {
+.headerbuttons,
+.viernulvier button {
   background-color: #ea5233;
   color: white;
   padding: 1em 2em;
@@ -208,4 +209,20 @@ footer {
 footer a {
   text-decoration: none;
   color: #ea5233;
+}
+
+/* 404 */
+.viernulvier {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 20em;
+  height: 10em;
+  margin: 0 auto;
+  margin-top: 15%;
+}
+
+.viernulvier button {
+  background-color: #3b80ac;
+  margin-top: 1em;
 }

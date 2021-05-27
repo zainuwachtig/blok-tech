@@ -14,7 +14,6 @@ let myDislikes = [];
 let db = null;
 async function connectDB() {
   const uri = process.env.DB_URI;
-  // Waar staat dit voor?
   const options = { useUnifiedTopology: true };
   const client = new MongoClient(uri,options);
   await client.connect();
@@ -55,11 +54,9 @@ app.get('/contact', (req, res) => {
   res.render('contact')
 })
 
-// Dit werkt nog niet -> geef undefined, maar bij like pusht die hem wel naar de array?
 app.get('/mylikes', async (req, res) => {
   const queryId = {_id: ObjectId(currentUserId)};
   let currentUser = await db.collection('users').findOne(queryId);
-  console.log(currentUser.likes)
   const queryShoe = {pid: {$in:currentUser.likes}}
   let myLikes = await db.collection('shoes').find(queryShoe).toArray();
 
@@ -78,10 +75,8 @@ app.post('/yourmodels', (req, res) => {
 app.get('/explore', async (req, res) => {
   const queryId = {_id: ObjectId(currentUserId)};
   let currentUser = await db.collection('users').findOne(queryId);
-  console.log(currentUser)
   const query = {$and: [{pid: {$nin:currentUser.likes}}, {pid: {$nin:currentUser.dislikes}}]}
   const shoe = await db.collection('shoes').find(query).toArray();
-  console.log(shoe)
   let upperCard = shoe.find(upperCard => upperCard)
   res.render('shoe', {shoe, upperCard})
 })
@@ -101,7 +96,10 @@ app.post('/explore', async (req, res) => {
       }
     };
     const newShoe = await db.collection('users').findOneAndUpdate(queryId, update, options);
-    shoe.shift()
+    const shoe = await db.collection('shoes').find(query).toArray();
+
+    let upperCard = shoe.find(upperCard => upperCard)
+    console.log(upperCard)
   } else {
     const update = {
       "$push": {
@@ -109,6 +107,11 @@ app.post('/explore', async (req, res) => {
       }
     };
     const newShoe = await db.collection('users').findOneAndUpdate(queryId, update, options);
+    const update2 = {
+      "$pop": {
+        "dislikes": req.body.pid
+      }
+    };
     shoe.shift()
   }
 

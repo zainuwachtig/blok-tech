@@ -16,8 +16,8 @@ html
                     p Year 
                     //- Alleen het jaar en niet de volledige datum
                     - var date = upperCard.releaseDate;
-                    //- - var sub_date = date.substr(0, 4);
-                    //- p= sub_date
+                    - var sub_date = date.substr(0, 4);
+                    - p= sub_date
 
         form(class="likebuttons" action="" method="POST")
             input(type="hidden" name="pid" value=upperCard.pid)

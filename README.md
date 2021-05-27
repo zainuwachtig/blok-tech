@@ -36,6 +36,8 @@ npm start
 
 ## Database
 
+Ik heb voor de database gebruik gemaakt van [MongoDB](https://docs.mongodb.com/manual/introduction/).
+
 ## License
 
 [MIT](https://github.com/zainuwachtig/blok-tech/blob/master/LICENSE)
