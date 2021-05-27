@@ -1,15 +1,15 @@
+const { query } = require('express');
 const express = require('express')
 const app = express();
 const dotenv = require('dotenv').config();
 const { MongoClient } = require('mongodb')
+const { ObjectId} = require("mongodb")
 const port = process.env.PORT || 3000
-// const StockXAPI = require('stockx-api');
-// const stockX = new StockXAPI();
-// Deze aanvullen met zoveel mogelijk modellen
+const currentUserId = '60af89be7bbfbe2338c2f805'
 const allModels = ['Air Max 1', 'Air Max 90', 'Air Max 95', 'Air Max 96', 'Air Max 97', 'Air Max 98', 'Air Max 270', 'Air Max 720', 'Air Max Plus', 'Air VaporMax'];
 let yourModels = [];
-let myLikes = [];
 let myDislikes = [];
+
 
 let db = null;
 async function connectDB() {
@@ -28,31 +28,6 @@ connectDB()
   console.log(error);
 });
 
-const shoe = [{
-  'name': 'Air Max 95 OG Neon (2020)',
-  'releaseDate': '2020-12-17',
-  'pid': 'CT1689-001',
-  'image': 'https://images.stockx.com/images/Nike-Air-Max-95-OG-Neon-2020-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1609443450',
-  'urlKey': 'air-max-95-og-neon-2020'
-},
-{
-  'name': 'Air Max 98 Supreme Snakeskin',
-  'releaseDate': '2016-04-28',
-  'pid': '844694-100',
-  'image': 'https://images.stockx.com/images/Nike-Air-Max-98-Supreme-Snakeskin-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1607672309',
-  'urlKey': 'air-max-98-supreme-snakeskin'
-},
-{
-  'name': 'Air Max 180 Comme des Garcons White',
-  'releaseDate': '2018-02-01',
-  'pid': 'AO4641-600',
-  'image': 'https://images.stockx.com/Nike-Air-Max-180-Comme-des-Garcons-White-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1603481985',
-  'urlKey': 'air-max-180-comme-des-garcons-white'
-}
-];
-
-let upperCard = shoe.find(upperCard => upperCard)
-console.log(upperCard)
 
 app.set('view engine', 'pug')
 
@@ -80,7 +55,10 @@ app.get('/contact', (req, res) => {
   res.render('contact')
 })
 
-app.get('/mylikes', (req, res) => {
+// Dit werkt nog niet -> geef undefined, maar bij like pusht die hem wel naar de array?
+app.get('/mylikes', async (req, res) => {
+  const query = {}
+  let myLikes = await db.collection('likes').find(query).toArray();
   res.render('mylikes', {myLikes})
 })
 
@@ -93,25 +71,47 @@ app.post('/yourmodels', (req, res) => {
   res.render('model', {allModels})
 })
 
-app.get('/shoe', (req, res) => {
+app.get('/explore', async (req, res) => {
+  const query = {}
+  const shoe = await db.collection('shoes').find(query).toArray();
+  let upperCard = shoe.find(upperCard => upperCard)
   res.render('shoe', {shoe, upperCard})
 })
 
-app.post('/shoe', (req, res) => {
-  if (req.body.like) {
-    myLikes.push(upperCard)
+app.post('/explore', async (req, res) => {
+  const query = {}
+  const shoe = await db.collection('shoes').find(query).toArray();
+  let upperCard = shoe.find(upperCard => upperCard)
+  let myLikes = await db.collection('likes').find(query).toArray();
+  const queryId = {_id: ObjectId(currentUserId)};
+  const options = { returnNewDocument: true };
+  
+
+  if (req.body === 'like') {
+    const update = {
+      "$push": {
+        "likes": req.body.name
+      }
+    };
+    
+    const newShoe = await db.collection('users').findOneAndUpdate(queryId, update, options);
     shoe.shift()
   } else {
-    myDislikes.push(upperCard)
+    const update = {
+      "$push": {
+        "dislikes": req.body.name
+      }
+    };
+    const newShoe = await db.collection('users').findOneAndUpdate(queryId, update, options);
     shoe.shift()
   }
-  upperCard = shoe.find(upperCard => upperCard)
+  console.log(myLikes)
 
   res.render('shoe', {shoe, upperCard})
 })
 
 app.use( (req, res) => {
-  res.status(404).send("Sorry, not found")
+  res.render('404')
 })
 
 app.listen(port, () => {

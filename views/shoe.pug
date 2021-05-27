@@ -20,6 +20,7 @@ html
                     p= sub_date
 
         form(class="likebuttons" action="" method="POST")
+            input(type="hidden" name="pid" value=upperCard.pid)
             button(type="submit" name="dislike" value="dislike") &#128465; 
             button(type="submit" name="like" value="like") &#128293;
 
