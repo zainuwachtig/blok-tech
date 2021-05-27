@@ -39,11 +39,10 @@ header {
 }
 
 /* Login */
-.login,
 .choosemodel input[type="submit"],
 #startbutton,
 .contact input[type="submit"],
-.mylikes {
+.headerbuttons {
   background-color: #ea5233;
   color: white;
   padding: 1em 2em;
@@ -52,10 +51,9 @@ header {
   text-decoration: none;
 }
 
-.login:hover,
+.headerbuttons:hover,
 .choosemodel input[type="submit"]:hover,
-#startbutton:hover,
-.mylikes:hover {
+#startbutton:hover {
   opacity: 0.8;
 }
 

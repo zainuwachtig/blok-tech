@@ -58,7 +58,8 @@ app.get('/contact', (req, res) => {
 // Dit werkt nog niet -> geef undefined, maar bij like pusht die hem wel naar de array?
 app.get('/mylikes', async (req, res) => {
   const query = {}
-  let myLikes = await db.collection('likes').find(query).toArray();
+  let myLikes = await db.collection('users').find(query).toArray();
+  console.log(myLikes)
   res.render('mylikes', {myLikes})
 })
 
@@ -87,10 +88,10 @@ app.post('/explore', async (req, res) => {
   const options = { returnNewDocument: true };
   
 
-  if (req.body === 'like') {
+  if (req.body.like) {
     const update = {
       "$push": {
-        "likes": req.body.name
+        "likes": req.body.pid
       }
     };
     
@@ -99,13 +100,12 @@ app.post('/explore', async (req, res) => {
   } else {
     const update = {
       "$push": {
-        "dislikes": req.body.name
+        "dislikes": req.body.pid
       }
     };
     const newShoe = await db.collection('users').findOneAndUpdate(queryId, update, options);
     shoe.shift()
   }
-  console.log(myLikes)
 
   res.render('shoe', {shoe, upperCard})
 })
