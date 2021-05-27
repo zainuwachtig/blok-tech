@@ -2,8 +2,8 @@ const { query } = require('express');
 const express = require('express')
 const app = express();
 const dotenv = require('dotenv').config();
-const { MongoClient } = require('mongodb')
-const { ObjectId} = require("mongodb")
+const { MongoClient } = require('mongodb');
+const { ObjectId} = require("mongodb");
 const port = process.env.PORT || 3000
 const currentUserId = '60af89be7bbfbe2338c2f805'
 const allModels = ['Air Max 1', 'Air Max 90', 'Air Max 95', 'Air Max 96', 'Air Max 97', 'Air Max 98', 'Air Max 270', 'Air Max 720', 'Air Max Plus', 'Air VaporMax'];
@@ -57,9 +57,12 @@ app.get('/contact', (req, res) => {
 
 // Dit werkt nog niet -> geef undefined, maar bij like pusht die hem wel naar de array?
 app.get('/mylikes', async (req, res) => {
-  const query = {}
-  let myLikes = await db.collection('users').find(query).toArray();
-  console.log(myLikes)
+  const queryId = {_id: ObjectId(currentUserId)};
+  let currentUser = await db.collection('users').findOne(queryId);
+  console.log(currentUser.likes)
+  const queryShoe = {pid: {$in:currentUser.likes}}
+  let myLikes = await db.collection('shoes').find(queryShoe).toArray();
+
   res.render('mylikes', {myLikes})
 })
 
@@ -73,8 +76,12 @@ app.post('/yourmodels', (req, res) => {
 })
 
 app.get('/explore', async (req, res) => {
-  const query = {}
+  const queryId = {_id: ObjectId(currentUserId)};
+  let currentUser = await db.collection('users').findOne(queryId);
+  console.log(currentUser)
+  const query = {$and: [{pid: {$nin:currentUser.likes}}, {pid: {$nin:currentUser.dislikes}}]}
   const shoe = await db.collection('shoes').find(query).toArray();
+  console.log(shoe)
   let upperCard = shoe.find(upperCard => upperCard)
   res.render('shoe', {shoe, upperCard})
 })
@@ -87,14 +94,12 @@ app.post('/explore', async (req, res) => {
   const queryId = {_id: ObjectId(currentUserId)};
   const options = { returnNewDocument: true };
   
-
   if (req.body.like) {
     const update = {
       "$push": {
         "likes": req.body.pid
       }
     };
-    
     const newShoe = await db.collection('users').findOneAndUpdate(queryId, update, options);
     shoe.shift()
   } else {
