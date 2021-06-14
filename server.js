@@ -97,6 +97,15 @@ app.post('/explore', async (req, res) => {
     };
     const newShoe = await db.collection('users').findOneAndUpdate(queryId, update, options);
     const shoe = await db.collection('shoes').find(query).toArray();
+    console.log(shoe)
+  
+    // const queryIdUpperCard = {_id: shoe[0]}
+    // const updateUpperCard = {
+    //   "$pop": {
+    //     shoe: -1
+    //   }
+    // };
+    // const newUpperCard = await db.collection('shoes').findOneAndUpdate(queryIdUpperCard, updateUpperCard, options);
 
     let upperCard = shoe.find(upperCard => upperCard)
     console.log(upperCard)
@@ -112,6 +121,7 @@ app.post('/explore', async (req, res) => {
         "dislikes": req.body.pid
       }
     };
+    let upperCard = shoe.find(upperCard => upperCard)
     shoe.shift()
   }
 
