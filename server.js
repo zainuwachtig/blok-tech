@@ -21,7 +21,7 @@ async function connectDB() {
 }
 connectDB()
 .then(() => {
-  console.log('Mongo verbinding is er');
+  console.log('🥭 Mango verbinding is er');
 })
 .catch ( error => {
   console.log(error);
