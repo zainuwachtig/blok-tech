@@ -130,11 +130,34 @@ header {
 
 .mylikescardpaartjes {
   display: flex;
+  padding: 1em;
+  margin: 1em 0;
+}
+
+.superliketrash {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .mylikescardpaartjes img {
   width: 10em;
-  margin-right: 1em;
+  margin: 0 1em;
+}
+
+.addsuperlike {
+  border: 0.2em solid #fcbd48;
+  border-radius: 1em;
+  padding: 0.8em;
+}
+
+.trash:hover {
+  color: #ea5233;
+}
+
+.star:hover {
+  color: #fcbd48;
 }
 
 /* Position absolute om zo de cards over elkaar te krijgen */
