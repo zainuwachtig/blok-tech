@@ -3,15 +3,14 @@ html
   body
     include includes/header.pug 
     main
-      .mylikescard 
-          h2 My likes
-          each s in myLikes
-              div.mylikescardpaartjes
-                .superliketrash
-                  span.fas.fa-star.star
-                  span.fas.fa-trash.trash
-                img(src=s.image, alt=s.name)
-                div
-                 h3=s.name
-                 p=s.pid
+      each s in myLikes
+        div.mylikescardpaartjes
+          .superliketrash
+            span.fas.fa-star
+            span.fas.fa-copy
+            span.fas.fa-trash
+          img(src=s.image, alt=s.name)
+          div
+           h3=s.name
+           p=s.pid
     include includes/footer.pug

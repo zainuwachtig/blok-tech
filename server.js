@@ -72,6 +72,7 @@ app.post('/yourmodels', (req, res) => {
   res.render('model', {allModels})
 })
 
+// Loop schrijven voor API
 app.get('/explore', async (req, res) => {
   const queryId = {_id: ObjectId(currentUserId)};
   let currentUser = await db.collection('users').findOne(queryId);

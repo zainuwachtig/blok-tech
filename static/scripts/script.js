@@ -1,33 +1,32 @@
-const superlike = document.getElementsByClassName("star");
-const trash = document.getElementsByClassName("trash");
+const superlike = document.getElementsByClassName("fa-star");
+const trash = document.getElementsByClassName("fa-trash");
+const copy = document.getElementsByClassName("fa-copy");
 
-function addSuperLike() {
-    // if (superlike.classList === "far") {
-    //  superlike.classList.remove("far");
-    //  superlike.classList.add("fas");
-    //  console.log('test1')
-    // } else {
-    //  superlike.classList.add("far");
-    //  superlike.classList.remove("fas");
-    //  console.log('test2')
-    // }
-
-    //  superlike.classList.remove("far");
-    //  superlike.classList.add("fas");
-
+function toggleSuperLike() {
     this.parentNode.parentNode.classList.toggle("addsuperlike")
+    this.classList.toggle("superliked")
 }
 
 function removeShoe() {
     this.parentNode.parentNode.remove();
 }
 
+function copyStyle() {
+    // Dit had denk ik wel mooier gekund, maar het gaat erom dat het werkt.
+    navigator.clipboard.writeText(this.parentNode.parentNode.childNodes[2].childNodes[1].textContent)
+}
+
 // Een for loop, omdat die anders niet werkt voor alle superlikes.
-for (var i = 0 ; i < superlike.length; i++) {
-    superlike[i].addEventListener("click" , addSuperLike) ; 
+for (var i = 0; i < superlike.length; i++) {
+    superlike[i].addEventListener("click" , toggleSuperLike) ; 
  }
 
 // Een for loop, omdat die anders niet werkt voor alle prullebakken.
-for (var i = 0 ; i < trash.length; i++) {
+for (var i = 0; i < trash.length; i++) {
     trash[i].addEventListener("click" , removeShoe) ; 
+ }
+
+ // Een for loop, omdat die anders niet werkt voor alle copy buttons.
+for (var i = 0; i < copy.length; i++) {
+    copy[i].addEventListener("click" , copyStyle) ; 
  }
