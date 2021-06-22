@@ -1,4 +1,4 @@
-!(Banner)[./blok-tech.wiki/images/Banner-01.png]
+![banner-01](https://user-images.githubusercontent.com/74155415/123011547-e55a1600-d3c0-11eb-8bf7-9477d5f78f0d.png)
 
 # Airies
 
