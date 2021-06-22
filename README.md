@@ -6,7 +6,7 @@ Airies is a matching application, like tinder but then for air max. I made this 
 
 ## Concept
 
-With Airies you can fill in the air max models you like, based on your preferences you will get a selection of shoes which you can like (🔥) or dislike (🗑). You can find an image, the name, the stylecode and the year of the shoe on the cards. You can also superlike your favourites, they get a yellow / golden border, so you can easily find them in the list of liked shoes!
+With Airies you can fill in the air max models you like, based on your preferences you will get a selection of shoes which you can like (🔥) or dislike (🗑). You can find an image, the name, the stylecode and the year of the shoe on the cards. You can also superlike your favourites, they get a kind of golden border, so you can easily find them in the list of liked shoes!
 
 ## Build with
 
