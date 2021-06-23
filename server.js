@@ -2,16 +2,11 @@ const { query } = require('express');
 const express = require('express')
 const app = express();
 const dotenv = require('dotenv').config();
-const { MongoClient } = require('mongodb');
-const { ObjectId} = require("mongodb");
+const { MongoClient, ObjectId } = require('mongodb');
 const port = process.env.PORT || 3000
-const currentUserId = '60af89be7bbfbe2338c2f805'
-const allModels = ['Air Max 1', 'Air Max 90', 'Air Max 95', 'Air Max 96', 'Air Max 97', 'Air Max 98', 'Air Max 270', 'Air Max 720', 'Air Max Plus', 'Air VaporMax'];
-let yourModels = [];
-let myDislikes = [];
+const currentUserId = '60af89be7bbfbe2338c2f805';
 
-
-let db = null;
+let db
 async function connectDB() {
   const uri = process.env.DB_URI;
   const options = { useUnifiedTopology: true };
@@ -22,6 +17,9 @@ async function connectDB() {
 connectDB()
 .then(() => {
   console.log('🥭 Mango verbinding is er');
+  app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`)
+  })
 })
 .catch ( error => {
   console.log(error);
@@ -74,12 +72,16 @@ app.post('/yourmodels', (req, res) => {
 
 // Loop schrijven voor API
 app.get('/explore', async (req, res) => {
+  try {
   const queryId = {_id: ObjectId(currentUserId)};
   let currentUser = await db.collection('users').findOne(queryId);
   const query = {$and: [{pid: {$nin:currentUser.likes}}, {pid: {$nin:currentUser.dislikes}}]}
   const shoe = await db.collection('shoes').find(query).toArray();
   let upperCard = shoe.find(upperCard => upperCard)
   res.render('shoe', {shoe, upperCard})
+} catch(error) {
+  console.log(error)
+}
 })
 
 app.post('/explore', async (req, res) => {
@@ -99,14 +101,6 @@ app.post('/explore', async (req, res) => {
     const newShoe = await db.collection('users').findOneAndUpdate(queryId, update, options);
     const shoe = await db.collection('shoes').find(query).toArray();
     console.log(shoe)
-  
-    // const queryIdUpperCard = {_id: shoe[0]}
-    // const updateUpperCard = {
-    //   "$pop": {
-    //     shoe: -1
-    //   }
-    // };
-    // const newUpperCard = await db.collection('shoes').findOneAndUpdate(queryIdUpperCard, updateUpperCard, options);
 
     let upperCard = shoe.find(upperCard => upperCard)
     console.log(upperCard)
@@ -133,6 +127,4 @@ app.use( (req, res) => {
   res.render('404')
 })
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+
