@@ -4,7 +4,8 @@
   "description": "Matching app",
   "main": "server.js",
   "scripts": {
-    "test": "nodemon server.js"
+    "test": "nodemon server.js",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -25,7 +26,18 @@
     "stockx-api": "^1.0.9"
   },
   "devDependencies": {
-    "eslint": "^7.27.0",
-    "nodemon": "^2.0.7"
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.29.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-config-wesbos": "^1.0.1",
+    "eslint-plugin-html": "^6.1.2",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.3.1"
   }
 }
