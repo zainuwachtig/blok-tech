@@ -43,7 +43,7 @@ function deleteMessage() {
     window.setTimeout(function() {
         const myLikesMessage = document.getElementById("mylikesmessage");
         myLikesMessage.remove()
-     }, 10000);
+     }, 2500);
 }
 
 // Een for loop, omdat die anders niet werkt voor alle superlikes.
